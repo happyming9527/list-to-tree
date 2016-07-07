@@ -20,7 +20,7 @@ LTT = (function() {
         this.list = list;
         this.options = options != null ? options : {};
         this.ParseOptions();
-        this.list = _.map(_.sortByOrder(this.list, [this.key_parent, this.key_id], ['asc', 'asc']));
+        this.list = _.map(_.sortByOrder(this.list, [this.key_parent, this.key_sequence], ['asc', 'asc']));
         this.groupParent = _.uniq(_.pluck(this.list, this.key_parent));
         return this;
     }
@@ -34,6 +34,11 @@ LTT = (function() {
         }
         if (this.options.key_child != null) {
             this.key_child = this.options.key_child;
+        }
+        if (this.options.key_sequence != null) {
+            this.key_sequence = this.options.key_sequence;
+        } else {
+            this.key_sequence = this.options.key_id;
         }
     };
 
